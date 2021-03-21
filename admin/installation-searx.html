@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Step by step installation &#8212; Searx Documentation (Searx-0.17.0.tex)</title>
+    <title>Step by step installation &#8212; Searx Documentation (Searx-0.17.0-unknown.tex)</title>
     <link rel="stylesheet" href="../_static/searx.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx_tabs/semantic-ui-2.4.1/segment.min.css" />
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Searx Documentation (Searx-0.17.0.tex)</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Searx Documentation (Searx-0.17.0-unknown.tex)</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Administrator documentation</a> &#187;</li>
         <li class="nav-item nav-item-this"><a href="">Step by step installation</a></li> 
       </ul>
@@ -306,7 +306,7 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
 <div class="ui bottom attached sphinx-tab tab segment sphinx-data-tab-c2Vhcngvc2V0dGluZ3MueW1s docutils container">
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">general</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">debug</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span> <span class="c1"># Debug mode, only for development</span>
-  <span class="l l-Scalar l-Scalar-Plain">instance_name</span><span class="p p-Indicator">:</span> <span class="s">&quot;searx&quot;</span> <span class="c1"># displayed name</span>
+  <span class="l l-Scalar l-Scalar-Plain">instance_name</span><span class="p p-Indicator">:</span> <span class="s">&quot;nowsearch&quot;</span> <span class="c1"># displayed name</span>
 
 <span class="l l-Scalar l-Scalar-Plain">search</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">safe_search</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span> <span class="c1"># Filter results. 0: None, 1: Moderate, 2: Strict</span>
@@ -319,7 +319,7 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
   <span class="l l-Scalar l-Scalar-Plain">port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8080</span>
   <span class="l l-Scalar l-Scalar-Plain">bind_address</span><span class="p p-Indicator">:</span> <span class="s">&quot;0.0.0.0&quot;</span> <span class="c1"># address to listen on</span>
   <span class="l l-Scalar l-Scalar-Plain">secret_key</span><span class="p p-Indicator">:</span> <span class="s">&quot;hfgdshdjgfsdkjhfgdskjghjkf&quot;</span> <span class="c1"># change this!</span>
-  <span class="l l-Scalar l-Scalar-Plain">base_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span> <span class="c1"># Set custom base_url. Possible values: False or &quot;https://your.custom.host/location/&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">base_url</span><span class="p p-Indicator">:</span> <span class="s">&quot;https://vfawkes.io&quot;</span> <span class="c1"># Set custom base_url. Possible values: False or &quot;https://your.custom.host/location/&quot;</span>
   <span class="l l-Scalar l-Scalar-Plain">image_proxy</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span> <span class="c1"># Proxying image results through searx</span>
   <span class="l l-Scalar l-Scalar-Plain">http_protocol_version</span><span class="p p-Indicator">:</span> <span class="s">&quot;1.0&quot;</span> <span class="c1"># 1.0 and 1.1 are supported</span>
   <span class="l l-Scalar l-Scalar-Plain">method</span><span class="p p-Indicator">:</span> <span class="s">&quot;POST&quot;</span> <span class="c1"># POST queries are more secure as they don&#39;t show up in history but may cause problems when using Firefox containers</span>
@@ -367,7 +367,7 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
   <span class="c1"># max_request_timeout: 10.0 # the maximum timeout in seconds</span>
   <span class="l l-Scalar l-Scalar-Plain">useragent_suffix</span><span class="p p-Indicator">:</span> <span class="s">&quot;&quot;</span> <span class="c1"># suffix of searx_useragent, could contain informations like an email address to the administrator</span>
   <span class="l l-Scalar l-Scalar-Plain">pool_connections</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># Number of different hosts</span>
-  <span class="l l-Scalar l-Scalar-Plain">pool_maxsize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span> <span class="c1"># Number of simultaneous requests by host</span>
+  <span class="l l-Scalar l-Scalar-Plain">pool_maxsize</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">100</span> <span class="c1"># Number of simultaneous requests by host</span>
 <span class="c1"># uncomment below section if you want to use a proxy</span>
 <span class="c1"># see https://2.python-requests.org/en/latest/user/advanced/#proxies</span>
 <span class="c1"># SOCKS proxies are also supported: see https://2.python-requests.org/en/latest/user/advanced/#socks</span>
@@ -402,6 +402,7 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">arch linux wiki</span>
     <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">archlinux</span>
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">al</span>
+    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
 
   <span class="c1">#  tmp suspended:  dh key too small</span>
   <span class="c1">#  - name : base</span>
@@ -412,10 +413,6 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
     <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wikipedia</span>
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wp</span>
     <span class="l l-Scalar l-Scalar-Plain">base_url</span><span class="p p-Indicator">:</span> <span class="s">&quot;https://{language}.wikipedia.org/&quot;</span>
-
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bing images</span>
-    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bing_images</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bii</span>
 
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bing news</span>
     <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bing_news</span>
@@ -485,19 +482,6 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
   <span class="c1">#    timeout : 6.0</span>
   <span class="c1">#    disabled : True</span>
 
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">erowid</span>
-    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">xpath</span>
-    <span class="l l-Scalar l-Scalar-Plain">paging</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-    <span class="l l-Scalar l-Scalar-Plain">first_page_num</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
-    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
-    <span class="l l-Scalar l-Scalar-Plain">search_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://www.erowid.org/search.php?q={query}&amp;s={pageno}</span>
-    <span class="l l-Scalar l-Scalar-Plain">url_xpath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">//dl[@class=&quot;results-list&quot;]/dt[@class=&quot;result-title&quot;]/a/@href</span>
-    <span class="l l-Scalar l-Scalar-Plain">title_xpath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">//dl[@class=&quot;results-list&quot;]/dt[@class=&quot;result-title&quot;]/a/text()</span>
-    <span class="l l-Scalar l-Scalar-Plain">content_xpath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">//dl[@class=&quot;results-list&quot;]/dd[@class=&quot;result-details&quot;]</span>
-    <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">general</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ew</span>
-    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-
   <span class="c1">#  - name : elasticsearch</span>
   <span class="c1">#    shortcut : es</span>
   <span class="c1">#    engine : elasticsearch</span>
@@ -518,16 +502,18 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
     <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3.0</span>
     <span class="l l-Scalar l-Scalar-Plain">weight</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
 
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">movies</span>
+    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">movies</span>
+    <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">movies</span>
+    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+    <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+    <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">movies</span>
+    <span class="l l-Scalar l-Scalar-Plain">weight</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">duckduckgo</span>
     <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">duckduckgo</span>
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ddg</span>
     <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-
-  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">duckduckgo images</span>
-    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">duckduckgo_images</span>
-    <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ddi</span>
-    <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">3.0</span>
-    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
 
   <span class="c1">#  - name : ebay</span>
   <span class="c1">#    engine : ebay</span>
@@ -546,11 +532,28 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
     <span class="l l-Scalar l-Scalar-Plain">url_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">web_url</span>
     <span class="l l-Scalar l-Scalar-Plain">title_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">name_with_namespace</span>
     <span class="l l-Scalar l-Scalar-Plain">content_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">description</span>
-    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
+    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
     <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">it</span>
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gl</span>
     <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10.0</span>
     <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">arch</span>
+    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">arch_packages</span>
+    <span class="l l-Scalar l-Scalar-Plain">paging</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+    <span class="l l-Scalar l-Scalar-Plain">search_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://archlinux.org/packages/search/json/?name={query}</span>
+    <span class="l l-Scalar l-Scalar-Plain">results_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">results</span>
+    <span class="l l-Scalar l-Scalar-Plain">url_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">url</span>
+    <span class="l l-Scalar l-Scalar-Plain">title_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pkgname</span>
+    <span class="l l-Scalar l-Scalar-Plain">content_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pkgdesc</span>
+    <span class="l l-Scalar l-Scalar-Plain">package_installed_size_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">installed_size</span>
+    <span class="l l-Scalar l-Scalar-Plain">package_compressed_size_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">compressed_size</span>
+    <span class="l l-Scalar l-Scalar-Plain">package_version_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pkgver</span>
+    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
+    <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">it</span>
+    <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ap</span>
+    <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10.0</span>
+    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
 
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">github</span>
     <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">github</span>
@@ -594,7 +597,7 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
     <span class="l l-Scalar l-Scalar-Plain">title_xpath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.//h3/a</span>
     <span class="l l-Scalar l-Scalar-Plain">content_xpath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">.//div[@class=&quot;gs_rs&quot;]</span>
     <span class="l l-Scalar l-Scalar-Plain">suggestion_xpath</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">//div[@id=&quot;gs_res_ccl_top&quot;]//a/b</span>
-    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
     <span class="l l-Scalar l-Scalar-Plain">first_page_num</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0</span>
     <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">science</span>
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">gos</span>
@@ -639,18 +642,37 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">mc</span>
 
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">npm</span>
-    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">json_engine</span>
+    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">npm_engine</span>
     <span class="l l-Scalar l-Scalar-Plain">paging</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
     <span class="l l-Scalar l-Scalar-Plain">search_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://api.npms.io/v2/search?q={query}&amp;size=25&amp;from={pageno}</span>
     <span class="l l-Scalar l-Scalar-Plain">results_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">results</span>
     <span class="l l-Scalar l-Scalar-Plain">url_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">package/links/npm</span>
     <span class="l l-Scalar l-Scalar-Plain">title_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">package/name</span>
     <span class="l l-Scalar l-Scalar-Plain">content_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">package/description</span>
-    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">25</span>
+    <span class="l l-Scalar l-Scalar-Plain">quality_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">score/detail/quality</span>
+    <span class="l l-Scalar l-Scalar-Plain">popularity_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">score/detail/popularity</span>
+    <span class="l l-Scalar l-Scalar-Plain">maintenance_query</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">score/detail/maintenance</span>
+    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
     <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">it</span>
-    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
+    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
     <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">npm</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wheater</span>
+    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wheater</span>
+    <span class="l l-Scalar l-Scalar-Plain">search_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://api.weatherapi.com/v1/forecast.json?key=b273d4a1f04048abb92142527211101&amp;q={query}&amp;days=8</span>
+    <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">general</span>
+    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+    <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0</span>
+    <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">wheater</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">veelancing</span>
+    <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">veelancing</span>
+    <span class="l l-Scalar l-Scalar-Plain">search_url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">https://veelancing.io/api/v1/jobs/search</span>
+    <span class="l l-Scalar l-Scalar-Plain">categories</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jobs</span>
+    <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">False</span>
+    <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">2.0</span>
+    <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jobs</span>
 
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">openairedatasets</span>
     <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">json_engine</span>
@@ -688,7 +710,7 @@ $ sudo -H sed -i -e <span class="s2">&quot;s/{instance_name}/searx@</span><span 
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">reddit</span>
     <span class="l l-Scalar l-Scalar-Plain">engine</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">reddit</span>
     <span class="l l-Scalar l-Scalar-Plain">shortcut</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">re</span>
-    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">25</span>
+    <span class="l l-Scalar l-Scalar-Plain">page_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">4</span>
     <span class="l l-Scalar l-Scalar-Plain">timeout</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">10.0</span>
     <span class="l l-Scalar l-Scalar-Plain">disabled</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
 
