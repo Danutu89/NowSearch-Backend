@@ -24,3 +24,4 @@ VERSION_BUILD = 0
 VERSION_STRING = "{0}.{1}.{2}".format(VERSION_MAJOR,
                                       VERSION_MINOR,
                                       VERSION_BUILD)
+VERSION_STRING = VERSION_STRING + "-unknown"

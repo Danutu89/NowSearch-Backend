@@ -158,14 +158,18 @@ class ResultContainer:
         "unresponsive_engines",
         "timings",
         "redirect_url",
+        "movie",
+        "movies",
     )
 
     def __init__(self):
         super().__init__()
         self._merged_results = []
         self.infoboxes = []
+        self.movie = {}
+        self.movies = []
         self.suggestions = set()
-        self.answers = {}
+        self.answers = []
         self.corrections = set()
         self._number_of_results = []
         self._ordered = False
@@ -182,11 +186,15 @@ class ResultContainer:
             if "suggestion" in result:
                 self.suggestions.add(result["suggestion"])
             elif "answer" in result:
-                self.answers[result["answer"]] = result
+                self.answers.append(result)
             elif "correction" in result:
                 self.corrections.add(result["correction"])
             elif "infobox" in result:
                 self._merge_infobox(result)
+            elif "movie" in result:
+                self.movie = result
+            elif "movies" in result:
+                self.movies = result["movies"]
             elif "number_of_results" in result:
                 self._number_of_results.append(result["number_of_results"])
             else:

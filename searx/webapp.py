@@ -727,6 +727,8 @@ def search():
             {
                 "query": search_query.query,
                 "number_of_results": number_of_results,
+                "movies": result_container.movies,
+                "movie": result_container.movie,
                 "results": results,
                 "answers": list(result_container.answers),
                 "corrections": list(result_container.corrections),

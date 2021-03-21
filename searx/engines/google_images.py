@@ -29,7 +29,10 @@ from lxml import html
 from searx import logger
 from searx.exceptions import SearxEngineCaptchaException
 from searx.utils import extract_text, eval_xpath
-from searx.engines.google import _fetch_supported_languages, supported_languages_url  # NOQA # pylint: disable=unused-import
+from searx.engines.google import (
+    _fetch_supported_languages,
+    supported_languages_url,
+)  # NOQA # pylint: disable=unused-import
 
 from searx.engines.google import (
     get_lang_country,
@@ -37,32 +40,27 @@ from searx.engines.google import (
     time_range_dict,
 )
 
-logger = logger.getChild('google images')
+logger = logger.getChild("google images")
 
 # engine dependent config
 
-categories = ['images']
+categories = ["images"]
 paging = False
 language_support = True
 use_locale_domain = True
 time_range_support = True
 safesearch = True
 
-filter_mapping = {
-    0: 'images',
-    1: 'active',
-    2: 'active'
-}
+filter_mapping = {0: "images", 1: "active", 2: "active"}
 
 
 def scrap_out_thumbs(dom):
-    """Scrap out thumbnail data from <script> tags.
-    """
+    """Scrap out thumbnail data from <script> tags."""
     ret_val = dict()
     for script in eval_xpath(dom, '//script[contains(., "_setImgSrc(")]'):
         _script = script.text
         # _setImgSrc('0','data:image\/jpeg;base64,\/9j\/4AAQSkZJR ....');
-        _thumb_no, _img_data = _script[len("_setImgSrc("):-2].split(",", 1)
+        _thumb_no, _img_data = _script[len("_setImgSrc(") : -2].split(",", 1)
         _thumb_no = _thumb_no.replace("'", "")
         _img_data = _img_data.replace("'", "")
         _img_data = _img_data.replace(r"\/", r"/")
@@ -71,15 +69,14 @@ def scrap_out_thumbs(dom):
 
 
 def scrap_img_by_id(script, data_id):
-    """Get full image URL by data-id in parent element
-    """
-    img_url = ''
-    _script = script.split('\n')
+    """Get full image URL by data-id in parent element"""
+    img_url = ""
+    _script = script.split("\n")
     for i, line in enumerate(_script):
-        if 'gstatic.com/images' in line and data_id in line:
+        if "gstatic.com/images" in line and data_id in line:
             url_line = _script[i + 1]
             img_url = url_line.split('"')[1]
-            img_url = unquote(img_url.replace(r'\u00', r'%'))
+            img_url = unquote(img_url.replace(r"\u00", r"%"))
     return img_url
 
 
@@ -88,35 +85,49 @@ def request(query, params):
 
     language, country, lang_country = get_lang_country(
         # pylint: disable=undefined-variable
-        params, supported_languages, language_aliases
+        params,
+        supported_languages,
+        language_aliases,
     )
-    subdomain = 'www.' + google_domains.get(country.upper(), 'google.com')
+    subdomain = "www." + google_domains.get(country.upper(), "google.com")
 
-    query_url = 'https://' + subdomain + '/search' + "?" + urlencode({
-        'q': query,
-        'tbm': "isch",
-        'hl': lang_country,
-        'lr': "lang_" + language,
-        'ie': "utf8",
-        'oe': "utf8",
-        'num': 30,
-    })
+    query_url = (
+        "https://"
+        + subdomain
+        + "/search"
+        + "?"
+        + urlencode(
+            {
+                "q": query,
+                "tbm": "isch",
+                "hl": lang_country,
+                "lr": "lang_" + language,
+                "ie": "utf8",
+                "oe": "utf8",
+                "num": 30,
+            }
+        )
+    )
 
-    if params['time_range'] in time_range_dict:
-        query_url += '&' + urlencode({'tbs': 'qdr:' + time_range_dict[params['time_range']]})
-    if params['safesearch']:
-        query_url += '&' + urlencode({'safe': filter_mapping[params['safesearch']]})
+    if params["time_range"] in time_range_dict:
+        query_url += "&" + urlencode(
+            {"tbs": "qdr:" + time_range_dict[params["time_range"]]}
+        )
+    if params["safesearch"]:
+        query_url += "&" + urlencode({"safe": filter_mapping[params["safesearch"]]})
 
-    params['url'] = query_url
+    params["url"] = query_url
     logger.debug("query_url --> %s", query_url)
 
-    params['headers']['Accept-Language'] = (
-        "%s,%s;q=0.8,%s;q=0.5" % (lang_country, language, language))
-    logger.debug(
-        "HTTP Accept-Language --> %s", params['headers']['Accept-Language'])
-    params['headers']['Accept'] = (
-        'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
+    params["headers"]["Accept-Language"] = "%s,%s;q=0.8,%s;q=0.5" % (
+        lang_country,
+        language,
+        language,
     )
+    logger.debug("HTTP Accept-Language --> %s", params["headers"]["Accept-Language"])
+    params["headers"][
+        "Accept"
+    ] = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8"
     # params['google_subdomain'] = subdomain
     return params
 
@@ -127,10 +138,10 @@ def response(resp):
 
     # detect google sorry
     resp_url = urlparse(resp.url)
-    if resp_url.netloc == 'sorry.google.com' or resp_url.path == '/sorry/IndexRedirect':
+    if resp_url.netloc == "sorry.google.com" or resp_url.path == "/sorry/IndexRedirect":
         raise SearxEngineCaptchaException()
 
-    if resp_url.path.startswith('/sorry'):
+    if resp_url.path.startswith("/sorry"):
         raise SearxEngineCaptchaException()
 
     # which subdomain ?
@@ -139,7 +150,9 @@ def response(resp):
     # convert the text to dom
     dom = html.fromstring(resp.text)
     img_bas64_map = scrap_out_thumbs(dom)
-    img_src_script = eval_xpath(dom, '//script[contains(., "AF_initDataCallback({key: ")]')[1].text
+    img_src_script = eval_xpath(
+        dom, '//script[contains(., "AF_initDataCallback({key: ")]'
+    )[1].text
 
     # parse results
     #
@@ -167,46 +180,51 @@ def response(resp):
     for img_node in eval_xpath(root, './/img[contains(@class, "rg_i")]'):
 
         try:
-            img_alt = eval_xpath(img_node, '@alt')[0]
+            img_alt = eval_xpath(img_node, "@alt")[0]
 
-            img_base64_id = eval_xpath(img_node, '@data-iid')
+            img_base64_id = eval_xpath(img_node, "@data-iid")
             if img_base64_id:
                 img_base64_id = img_base64_id[0]
                 thumbnail_src = img_bas64_map[img_base64_id]
             else:
-                thumbnail_src = eval_xpath(img_node, '@src')
+                thumbnail_src = eval_xpath(img_node, "@src")
                 if not thumbnail_src:
-                    thumbnail_src = eval_xpath(img_node, '@data-src')
+                    thumbnail_src = eval_xpath(img_node, "@data-src")
                 if thumbnail_src:
                     thumbnail_src = thumbnail_src[0]
                 else:
-                    thumbnail_src = ''
+                    thumbnail_src = ""
 
-            link_node = eval_xpath(img_node, '../../../a[2]')[0]
-            url = eval_xpath(link_node, '@href')[0]
+            link_node = eval_xpath(img_node, "../../../a[2]")[0]
+            url = eval_xpath(link_node, "@href")[0]
 
-            pub_nodes = eval_xpath(link_node, './div/div')
+            pub_nodes = eval_xpath(link_node, "./div/div")
             pub_descr = img_alt
-            pub_source = ''
+            pub_source = ""
             if pub_nodes:
                 pub_descr = extract_text(pub_nodes[0])
                 pub_source = extract_text(pub_nodes[1])
 
-            img_src_id = eval_xpath(img_node, '../../../@data-id')[0]
+            img_src_id = eval_xpath(img_node, "../../../@data-id")[0]
             src_url = scrap_img_by_id(img_src_script, img_src_id)
             if not src_url:
                 src_url = thumbnail_src
 
-            results.append({
-                'url': url,
-                'title': img_alt,
-                'content': pub_descr,
-                'source': pub_source,
-                'img_src': src_url,
-                # 'img_format': img_format,
-                'thumbnail_src': thumbnail_src,
-                'template': 'images.html'
-            })
+            results.append(
+                {
+                    "url": url,
+                    "title": img_alt,
+                    "content": pub_descr,
+                    "source": pub_source,
+                    "img_src": src_url,
+                    "img_format": {
+                        "width": int(eval_xpath(img_node, "@width")[0]),
+                        "height": int(eval_xpath(img_node, "@height")[0]),
+                    },
+                    "thumbnail_src": thumbnail_src,
+                    "template": "images.html",
+                }
+            )
         except Exception as e:  # pylint: disable=broad-except
             logger.error(e, exc_info=True)
             # from lxml import etree

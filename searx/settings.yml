@@ -1,6 +1,6 @@
 general:
   debug: True # Debug mode, only for development
-  instance_name: "searx" # displayed name
+  instance_name: "nowsearch" # displayed name
 
 search:
   safe_search: 0 # Filter results. 0: None, 1: Moderate, 2: Strict
@@ -13,7 +13,7 @@ server:
   port: 8080
   bind_address: "0.0.0.0" # address to listen on
   secret_key: "hfgdshdjgfsdkjhfgdskjghjkf" # change this!
-  base_url: False # Set custom base_url. Possible values: False or "https://your.custom.host/location/"
+  base_url: "https://vfawkes.io" # Set custom base_url. Possible values: False or "https://your.custom.host/location/"
   image_proxy: False # Proxying image results through searx
   http_protocol_version: "1.0" # 1.0 and 1.1 are supported
   method: "POST" # POST queries are more secure as they don't show up in history but may cause problems when using Firefox containers
@@ -61,7 +61,7 @@ outgoing: # communication with search engines
   # max_request_timeout: 10.0 # the maximum timeout in seconds
   useragent_suffix: "" # suffix of searx_useragent, could contain informations like an email address to the administrator
   pool_connections: 100 # Number of different hosts
-  pool_maxsize: 10 # Number of simultaneous requests by host
+  pool_maxsize: 100 # Number of simultaneous requests by host
 # uncomment below section if you want to use a proxy
 # see https://2.python-requests.org/en/latest/user/advanced/#proxies
 # SOCKS proxies are also supported: see https://2.python-requests.org/en/latest/user/advanced/#socks
@@ -96,6 +96,7 @@ engines:
   - name: arch linux wiki
     engine: archlinux
     shortcut: al
+    disabled: True
 
   #  tmp suspended:  dh key too small
   #  - name : base
@@ -106,10 +107,6 @@ engines:
     engine: wikipedia
     shortcut: wp
     base_url: "https://{language}.wikipedia.org/"
-
-  - name: bing images
-    engine: bing_images
-    shortcut: bii
 
   - name: bing news
     engine: bing_news
@@ -179,19 +176,6 @@ engines:
   #    timeout : 6.0
   #    disabled : True
 
-  - name: erowid
-    engine: xpath
-    paging: True
-    first_page_num: 0
-    page_size: 30
-    search_url: https://www.erowid.org/search.php?q={query}&s={pageno}
-    url_xpath: //dl[@class="results-list"]/dt[@class="result-title"]/a/@href
-    title_xpath: //dl[@class="results-list"]/dt[@class="result-title"]/a/text()
-    content_xpath: //dl[@class="results-list"]/dd[@class="result-details"]
-    categories: general
-    shortcut: ew
-    disabled: True
-
   #  - name : elasticsearch
   #    shortcut : es
   #    engine : elasticsearch
@@ -212,16 +196,18 @@ engines:
     timeout: 3.0
     weight: 2
 
+  - name: movies
+    engine: movies
+    categories: movies
+    disabled: False
+    timeout: 5.0
+    shortcut: movies
+    weight: 4
+
   - name: duckduckgo
     engine: duckduckgo
     shortcut: ddg
     disabled: false
-
-  - name: duckduckgo images
-    engine: duckduckgo_images
-    shortcut: ddi
-    timeout: 3.0
-    disabled: True
 
   #  - name : ebay
   #    engine : ebay
@@ -240,11 +226,28 @@ engines:
     url_query: web_url
     title_query: name_with_namespace
     content_query: description
-    page_size: 20
+    page_size: 4
     categories: it
     shortcut: gl
     timeout: 10.0
     disabled: True
+
+  - name: arch
+    engine: arch_packages
+    paging: False
+    search_url: https://archlinux.org/packages/search/json/?name={query}
+    results_query: results
+    url_query: url
+    title_query: pkgname
+    content_query: pkgdesc
+    package_installed_size_query: installed_size
+    package_compressed_size_query: compressed_size
+    package_version_query: pkgver
+    page_size: 4
+    categories: it
+    shortcut: ap
+    timeout: 10.0
+    disabled: False
 
   - name: github
     engine: github
@@ -288,7 +291,7 @@ engines:
     title_xpath: .//h3/a
     content_xpath: .//div[@class="gs_rs"]
     suggestion_xpath: //div[@id="gs_res_ccl_top"]//a/b
-    page_size: 10
+    page_size: 4
     first_page_num: 0
     categories: science
     shortcut: gos
@@ -333,18 +336,37 @@ engines:
     shortcut: mc
 
   - name: npm
-    engine: json_engine
+    engine: npm_engine
     paging: True
     search_url: https://api.npms.io/v2/search?q={query}&size=25&from={pageno}
     results_query: results
     url_query: package/links/npm
     title_query: package/name
     content_query: package/description
-    page_size: 25
+    quality_query: score/detail/quality
+    popularity_query: score/detail/popularity
+    maintenance_query: score/detail/maintenance
+    page_size: 4
     categories: it
-    disabled: True
+    disabled: False
     timeout: 5.0
     shortcut: npm
+
+  - name: wheater
+    engine: wheater
+    search_url: http://api.weatherapi.com/v1/forecast.json?key=b273d4a1f04048abb92142527211101&q={query}&days=8
+    categories: general
+    disabled: False
+    timeout: 5.0
+    shortcut: wheater
+
+  - name: veelancing
+    engine: veelancing
+    search_url: https://veelancing.io/api/v1/jobs/search
+    categories: jobs
+    disabled: False
+    timeout: 2.0
+    shortcut: jobs
 
   - name: openairedatasets
     engine: json_engine
@@ -382,7 +404,7 @@ engines:
   - name: reddit
     engine: reddit
     shortcut: re
-    page_size: 25
+    page_size: 4
     timeout: 10.0
     disabled: True
 
